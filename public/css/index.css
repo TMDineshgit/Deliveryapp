@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+    background-color: #e6e6e6;
+}
+.header-logo img{
+    max-width: 130px
+}
+.header-nav ul{
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+.header-nav ul li{
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1;
+}
+main{
+    min-height: 80vh;
+}
+.listing-container{
+    max-width: 90%;
+    margin: 20px auto;
+}
+.listing-cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+.res-card{
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+.res-card img{
+    max-width: 100%;
+    height: auto;
+}
+.listing-filter{
+    margin-bottom: 15px;
+}

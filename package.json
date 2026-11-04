@@ -1,0 +1,27 @@
+{
+  "name": "deliveryapp",
+  "version": "1.0.0",
+  "description": "Food devlivery app clone for learning",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TMDineshgit/Deliveryapp.git"
+  },
+  "author": "DineshTM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TMDineshgit/Deliveryapp/issues"
+  },
+  "homepage": "https://github.com/TMDineshgit/Deliveryapp#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}
