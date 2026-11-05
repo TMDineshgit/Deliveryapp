@@ -1,5 +1,5 @@
 
-const Header = () => {
+export default function Header() {
     return(
         <header className="header">
             <div className="header-logo">
@@ -17,4 +17,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+//export default Header;
