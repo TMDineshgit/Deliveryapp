@@ -1,20 +1,11 @@
 import { useState, useEffect } from "react";
 //import resList from "../utils/mockData"
 import ShimmerLoader from "./Shimmer";
+import Rescards from "./Rescards";
 import { Link } from 'react-router'
+import useOnlineStatus from "../utils/useOnlineStatus";
 
-const Rescards = ({resData}) => {
-    const { name, cuisines, avgRating, costForTwo } = resData?.info;
-    return (
-        <div className="res-card">
-            <img src="https://picsum.photos/400/200" alt="restaurant" />
-            <h3>{name}</h3>
-            <p>{cuisines.join(", ")}</p>
-            <p>Rating: {avgRating}</p>
-            <p>{costForTwo}</p>
-        </div>
-    )
-}
+
 
 const Listing = () => {
     const [topRated, setTopRated] = useState([])
@@ -49,24 +40,30 @@ const Listing = () => {
         setFilteredList(searchFilteredRes)
     }
 
+     const onlineStatus = useOnlineStatus();
+
     if(topRated.length === 0){
         
         return <ShimmerLoader />
     }
 
+    if (onlineStatus === false){
+        return <h1>Your Offline</h1>
+    }
+
     return (
-        <div className="listing-container">
-            <div className="listing-filter">
-               <div>
-                <input type="text" value={searchTerm} onChange={(e)=> setsearchTerm(e.target.value)} />
-                <button type="button" onClick={handleSearch}>Search</button>
+        <div className="max-w-[1700px] mx-auto px-3 py-2">
+            <div className="flex flex-wrap justify-center md:items-center md:justify-between mt-3 mb-5 gap-3">
+               <div className="flex">
+                <input className="p-2 border border-gray-300 mr-2 rounded-md" type="text" value={searchTerm} onChange={(e)=> setsearchTerm(e.target.value)} />
+                <button type="button" className="btn" onClick={handleSearch}>Search</button>
                </div>
                <div>
-                <button onClick={handleClick} type="button" className="btn">Top Rated</button>
+                <button onClick={handleClick} type="button" className="btn mr-2">Top Rated</button>
                 <button onClick={clearFilter} type="button" className="btn">Clear btn Filter</button>
                </div>
             </div>
-            <div className="listing-cards"> 
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5"> 
                 {filteredList.map((restaurant) =>  (
                     <Link key={restaurant.info.id} to={"/restrauntdetails/"+restaurant.info.id}><Rescards resData={restaurant} /></Link>
                 ))}

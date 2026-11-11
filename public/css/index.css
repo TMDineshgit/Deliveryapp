@@ -1,7 +1,9 @@
-body{
-    margin: 0;
-    padding: 0;
+@import "tailwindcss";
+.btn{
+    @apply text-white bg-blue-500 hover:bg-blue-700 px-6 py-2 rounded-[10px] font-medium;
 }
+
+
 .header{
     display: flex;
     align-items: center;

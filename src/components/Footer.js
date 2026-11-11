@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <footer style={{ textAlign: "center", padding: "1rem", backgroundColor: "#f8f8f8" }}>
+        <footer className="text-center px-2 py-3 bg-gray-200">
             <p>&copy; 2024 Delivery App. All rights reserved.</p>
         </footer>
     );

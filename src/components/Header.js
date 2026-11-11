@@ -1,6 +1,13 @@
 import { Link } from "react-router"
+import useOnlineStatus from "../utils/useOnlineStatus"
 
 export default function Header() {
+
+    const onlineStatus = useOnlineStatus()
+
+    const son = ``;
+    const soff = ``;
+
     return(
         <header className="header">
             <div className="header-logo">
@@ -11,9 +18,17 @@ export default function Header() {
                     <li>
                         <Link to="/">Home</Link>
                     </li>
+                    <li>
+                        <Link to="/grocery">Grocery</Link>
+                    </li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    <li>Cart</li>
+                    <li>Cart {onlineStatus ? (
+                        <span style={{ color: 'red', width: '5px', height: '5px', borderRadius: '10px', backgroundColor: 'green', display: 'inline-block' }} />
+                        ) : (
+                        <span style={{ color: 'red', width: '5px', height: '5px', borderRadius: '10px', backgroundColor: 'red', display: 'inline-block' }} />
+                        )}
+                    </li>
                 </ul>
             </div>
         </header>
