@@ -1,12 +1,17 @@
 import { Link } from "react-router"
 import useOnlineStatus from "../utils/useOnlineStatus"
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export default function Header() {
 
     const onlineStatus = useOnlineStatus()
 
-    const son = ``;
-    const soff = ``;
+    const {loggedinUser} = useContext(UserContext)
+
+    // subscribed to cart using selectors... when ever cart items updates it will also updates
+    const cartItems = useSelector((store)=> store.cart.items)
 
     return(
         <header className="header">
@@ -23,7 +28,12 @@ export default function Header() {
                     </li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    <li>Cart {onlineStatus ? (
+                    <li className="font-semibold">
+                        <Link to="/cart">Cart {cartItems.length} item(s)</Link>
+                    </li>
+                    <li>
+                        {loggedinUser}
+                        {onlineStatus ? (
                         <span style={{ color: 'red', width: '5px', height: '5px', borderRadius: '10px', backgroundColor: 'green', display: 'inline-block' }} />
                         ) : (
                         <span style={{ color: 'red', width: '5px', height: '5px', borderRadius: '10px', backgroundColor: 'red', display: 'inline-block' }} />

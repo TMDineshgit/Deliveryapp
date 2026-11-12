@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
@@ -11,19 +11,35 @@ import RestraruntDetails from './src/Pages/RestraruntDetails';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router';
 import ShimmerLoader from './src/components/Shimmer';
 const Grocessery = lazy(()=> import('./src/Pages/Grocessery'))
-
+const Cart = lazy(()=> import('./src/Pages/Cart'))
+import UserContext from './src/utils/UserContext';
+import { Provider } from 'react-redux';
+import appStore from './store/appStore';
 
 
 const App = () => {
+
+    const [userName, setUserName] = useState()
+
+    useEffect(()=>{
+        const data = {
+            name: "dinesh"
+        }
+        setUserName(data.name)
+    },[])
+
     return (
-        
-        <div className="app">
-            <Header />
-            <main className='min-h-[calc(100vh - 100px)]'>
-                <Outlet />
-            </main>
-            <Footer />
-        </div> 
+        <Provider store={appStore}>
+            <UserContext.Provider value={{loggedinUser: userName, setUserName}}>
+                <div className="app">
+                    <Header />
+                    <main className='min-h-[calc(100vh - 100px)]'>
+                        <Outlet />
+                    </main>
+                    <Footer />
+                </div> 
+            </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -52,6 +68,10 @@ const appRouter = createBrowserRouter ([
             {
                 path:"/restrauntdetails/:resId",
                 element: <RestraruntDetails />
+            },
+            {
+                path:"/cart",
+                element: <Suspense fallback={<ShimmerLoader/>}><Cart /></Suspense>
             }
         ],
         errorElement: <ErrorBoundary />

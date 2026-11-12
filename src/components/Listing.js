@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 //import resList from "../utils/mockData"
+import Rescards, { HocExample } from "./Rescards";
 import ShimmerLoader from "./Shimmer";
-import Rescards from "./Rescards";
 import { Link } from 'react-router'
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
 
 
 const Listing = () => {
@@ -40,7 +40,11 @@ const Listing = () => {
         setFilteredList(searchFilteredRes)
     }
 
-     const onlineStatus = useOnlineStatus();
+    const onlineStatus = useOnlineStatus();
+
+    const HocExampleOffer = HocExample(Rescards) 
+
+    const {loggedinUser, setUserName } = useContext(UserContext)
 
     if(topRated.length === 0){
         
@@ -62,10 +66,16 @@ const Listing = () => {
                 <button onClick={handleClick} type="button" className="btn mr-2">Top Rated</button>
                 <button onClick={clearFilter} type="button" className="btn">Clear btn Filter</button>
                </div>
+               <div>
+                <input className="p-2 border border-gray-300 mr-2 rounded-md" type="text" value={loggedinUser} onChange={(e)=>setUserName(e.target.value)} />
+               </div>
             </div>
+           
             <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5"> 
                 {filteredList.map((restaurant) =>  (
-                    <Link key={restaurant.info.id} to={"/restrauntdetails/"+restaurant.info.id}><Rescards resData={restaurant} /></Link>
+                    <Link key={restaurant.info.id} to={"/restrauntdetails/"+restaurant.info.id}>
+                       {restaurant.info.aggregatedDiscountInfoV3.subHeader == "UPTO ₹100" ? (<HocExampleOffer resData={restaurant} />) : ( <Rescards resData={restaurant} />)  }
+                    </Link>
                 ))}
             </div>
         </div>
