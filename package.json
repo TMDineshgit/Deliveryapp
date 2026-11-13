@@ -18,6 +18,17 @@
   },
   "homepage": "https://github.com/TMDineshgit/Deliveryapp#readme",
   "devDependencies": {
+    "@babel/core": "^7.29.13",
+    "@babel/preset-env": "^7.29.14",
+    "@babel/preset-react": "^7.29.7",
+    "@parcel/core": "^2.16.4",
+    "@parcel/transformer-js": "^2.16.4",
+    "@parcel/transformer-react-refresh-wrap": "^2.16.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.3",
+    "babel-jest": "^30.5.2",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
     "parcel": "^2.16.4"
   },
   "dependencies": {
